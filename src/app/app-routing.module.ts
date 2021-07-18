@@ -5,6 +5,14 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    //Esto dice: cuando alguien entra al path auth
+    //carga sus hijos, y esos hijos, van a venir del producto del auth module, 
+    //cuando eso cargue en memoria(el resultado de la promesa del import), entonces
+    //el modulo que se va a cargar es el auth module.
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule )
+  },
+  {
     path: '404',
     component: ErrorPageComponent
   },
