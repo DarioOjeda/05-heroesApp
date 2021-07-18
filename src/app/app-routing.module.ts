@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 
@@ -10,13 +10,18 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: ErrorPageComponent,
+    //component: ErrorPageComponent,
+
+    redirectTo: '404',
   }
 ]
 
 @NgModule({
   imports: [
-    
+    RouterModule.forRoot( routes )
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

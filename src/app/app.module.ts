@@ -1,3 +1,5 @@
+import { AppRoutingModule } from './app-routing.module';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,6 +13,7 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     ErrorPageComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule
   ],
