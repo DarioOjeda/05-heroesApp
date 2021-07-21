@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { Heroe } from '../interfaces/heroes.interfaces';
 
@@ -9,17 +10,17 @@ import { Heroe } from '../interfaces/heroes.interfaces';
 })
 export class HeroesService {
 
-  private apiUrl: string = 'http://localhost:3000/heroes';
+  private baseUrl: string = environment.baseUrl;
   
 
   constructor( private http: HttpClient ) { }
 
   getHeroes(): Observable<Heroe[]> {
-    return this.http.get<Heroe[]>('http://localhost:3000/heroes')
+    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes`)
   }
 
   getHeroePorId( id: string):Observable<Heroe> {
-    const url = `http://localhost:3000/heroes/${ id }`;
+    const url = `${this.baseUrl}/heroes/${ id }`;
 
     return this.http.get<Heroe>( url );
   }
