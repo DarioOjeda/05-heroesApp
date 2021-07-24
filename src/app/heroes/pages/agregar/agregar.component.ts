@@ -6,6 +6,8 @@ import { switchMap } from "rxjs/operators";
 
 import { Heroe, Publisher } from '../../interfaces/heroes.interfaces';
 import { HeroesService } from '../../services/heroes.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 
 @Component({
@@ -44,10 +46,11 @@ export class AgregarComponent implements OnInit {
     alt_img: '',
   }
 
-  constructor( private heroeService: HeroesService,
+  constructor( private heroeService:   HeroesService,
                private activatedRoute: ActivatedRoute,
-               private router:Router,
-               private snackBar: MatSnackBar) { }
+               private router:         Router,
+               private snackBar:       MatSnackBar,
+               private dialog:         MatDialog) { }
 
   ngOnInit(): void {
 
@@ -88,10 +91,15 @@ export class AgregarComponent implements OnInit {
   }
 
   borrar(): void {
-    this.heroeService.borrarHeroe( this.heroe.id! )
-          .subscribe( resp => {
-            this.router.navigate(['heroes']);
-          })
+
+    this.dialog.open( ConfirmarComponent, {
+      width: '250px'
+    } );
+
+    // this.heroeService.borrarHeroe( this.heroe.id! )
+    //       .subscribe( resp => {
+    //         this.router.navigate(['heroes']);
+    //       })
   }
 
   mostrarSnackBar( mensaje: string ):void {
